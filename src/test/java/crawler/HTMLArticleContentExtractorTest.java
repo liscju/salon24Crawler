@@ -4,12 +4,14 @@ import crawler.api.ArticleContent;
 import org.hamcrest.CoreMatchers;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.IOException;
 
 import static org.junit.Assert.*;
 
+@Ignore
 public class HTMLArticleContentExtractorTest {
 
     private void downloadAndCheckExtractor(String url, String expectedTitle, String expectedArticlePreffix, String expectedArticleSuffix) throws IOException {
