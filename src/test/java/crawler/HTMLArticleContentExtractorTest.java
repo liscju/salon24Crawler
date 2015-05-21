@@ -41,5 +41,12 @@ public class HTMLArticleContentExtractorTest {
         downloadAndCheckExtractor(url, expectedTitle, expectedArticlePreffix, expectedArticleSuffix);
     }
 
+    @Test
+    public void extractTestCase3() throws Exception {
+        String url = "http://korwin-mikke.salon24.pl/613347,przychodze-tu-z-onetu";
+        Document document = Jsoup.connect(url).get();
+        HTMLArticleContentExtractor contentExtractor = new HTMLArticleContentExtractor(document);
+        ArticleContent articleContent = contentExtractor.extractContent();
+    }
 
 }
