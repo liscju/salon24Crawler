@@ -1,15 +1,21 @@
 package crawler;
 
 import crawler.api.ArticleContent;
+import org.jsoup.nodes.Document;
+import org.jsoup.select.Elements;
 
 public class HTMLArticleContentExtractor {
-    private String content;
+    private final Document document;
 
-    public HTMLArticleContentExtractor(String content) {
-        this.content = content;
+    public HTMLArticleContentExtractor(Document document) {
+        this.document = document;
     }
 
     public ArticleContent extractContent() {
-        return null;
+        Elements articleHeader = document.select("article.post > header").select("h1");
+        String title = articleHeader.text();
+        Elements articleBody = document.select("article.post > div.article-body");
+        String content = articleBody.text();
+        return new ArticleContent(title,content,null);
     }
 }

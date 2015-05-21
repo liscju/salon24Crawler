@@ -3,12 +3,18 @@ package crawler.api;
 import java.util.List;
 
 public class ArticleContent {
+    private final String title;
     private String mainContent;
     private List<String> comments;
 
-    public ArticleContent(String mainContent, List<String> comments) {
+    public ArticleContent(String title, String mainContent, List<String> comments) {
+        this.title = title;
         this.mainContent = mainContent;
         this.comments = comments;
+    }
+
+    public String getTitle() {
+        return title;
     }
 
     public String getMainContent() {
