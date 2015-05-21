@@ -5,9 +5,9 @@ import java.util.List;
 public class ArticleContent {
     private final String title;
     private String mainContent;
-    private List<String> comments;
+    private List<Comment> comments;
 
-    public ArticleContent(String title, String mainContent, List<String> comments) {
+    public ArticleContent(String title, String mainContent, List<Comment> comments) {
         this.title = title;
         this.mainContent = mainContent;
         this.comments = comments;
@@ -21,7 +21,7 @@ public class ArticleContent {
         return mainContent;
     }
 
-    public List<String> getComments() {
+    public List<Comment> getComments() {
         return comments;
     }
 
