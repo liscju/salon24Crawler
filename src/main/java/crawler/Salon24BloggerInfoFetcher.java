@@ -34,11 +34,15 @@ public class Salon24BloggerInfoFetcher {
 
     public List<ArticleContent> fetchArticles() throws IOException {
         List<ArticleContent> bloggerArticles = new LinkedList<ArticleContent>();
-        List<Document> documentsWithLinksToArticles =
-                new HTMLListOfSitesWithLinksToArticlesExtractor(url).extractSitesWithLinksToArticles();
+        HTMLListOfSitesWithLinksToArticlesExtractor documentsWithLinksToArticles =
+                new HTMLListOfSitesWithLinksToArticlesExtractor(url);
 
-        for (Document document : documentsWithLinksToArticles) {
-            List<String> documentLinks = new HTMLListOfArticlesExtractor(document).extractLinks();
+        Document iteratingDocumentWithLinksToArticles;
+        while ( (iteratingDocumentWithLinksToArticles =
+                    documentsWithLinksToArticles.nextSiteWithLinksToArticles()) != null) {
+
+            List<String> documentLinks =
+                    new HTMLListOfArticlesExtractor(iteratingDocumentWithLinksToArticles).extractLinks();
 
             for (String link : documentLinks) {
                 Document linkDocumentArticle = Jsoup.connect(link).get();

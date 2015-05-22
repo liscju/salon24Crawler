@@ -24,29 +24,30 @@ import java.util.List;
  */
 public class HTMLListOfSitesWithLinksToArticlesExtractor {
     private String mainUrl;
+    private int currentDocument;
+    private final LinkedList<Document> extractedDocuments;
 
     public HTMLListOfSitesWithLinksToArticlesExtractor(String mainUrl) {
         if (mainUrl.endsWith("/")) {
             this.mainUrl = mainUrl.substring(0, mainUrl.length() - 1);
         } else
             this.mainUrl = mainUrl;
+        this.currentDocument = 1;
+        this.extractedDocuments = new LinkedList<Document>();
     }
 
-    public List<Document> extractSitesWithLinksToArticles() throws IOException {
-        List<Document> extractedDocuments = new LinkedList<Document>();
-        int i = 1;
-        while (true) {
-            String currentLink = calculateLink(i);
-            Document currentDocument = Jsoup.connect(currentLink).get();
-            if (hasLinksToArticle(currentDocument)) {
-                extractedDocuments.add(currentDocument);
-            } else {
-                break;
-            }
-            i++;
+    public Document extractSitesWithLinksToArticles(int i) throws IOException {
+        String currentLink = calculateLink(i);
+        Document currentDocument = Jsoup.connect(currentLink).get();
+        if (hasLinksToArticle(currentDocument)) {
+            return currentDocument;
+        } else {
+            return null;
         }
+    }
 
-        return extractedDocuments;
+    public Document nextSiteWithLinksToArticles() throws IOException {
+        return extractSitesWithLinksToArticles(this.currentDocument++);
     }
 
     public String calculateLink(int i) {
