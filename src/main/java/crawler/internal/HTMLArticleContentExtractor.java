@@ -70,7 +70,7 @@ public class HTMLArticleContentExtractor {
         Integer month = Integer.parseInt(dateParts[1])-1; // Month in date constructor starts with 0
         Integer year = dateParts.length == 3 ? Integer.parseInt(dateParts[2]) : Calendar.getInstance().get(Calendar.YEAR);
 
-        return new Date(year,month,day);
+        return new Date(year,month,day,hours,mins);
     }
 
     private Comment extractComment(Element articleComment) {
