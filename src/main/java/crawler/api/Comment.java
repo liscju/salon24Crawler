@@ -4,6 +4,9 @@ public class Comment {
     private String title;
     private String content;
 
+    public Comment() {
+    }
+
     public Comment(String title, String content) {
         this.title = title;
         this.content = content;

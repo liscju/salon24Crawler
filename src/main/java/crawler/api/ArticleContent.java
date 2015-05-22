@@ -4,10 +4,13 @@ import java.util.Date;
 import java.util.List;
 
 public class ArticleContent {
-    private final String title;
-    private final Date created;
-    private final String mainContent;
-    private final List<Comment> comments;
+    private String title;
+    private Date created;
+    private String mainContent;
+    private List<Comment> comments;
+
+    public ArticleContent() {
+    }
 
     public ArticleContent(String title, Date created,String mainContent, List<Comment> comments) {
         this.title = title;
