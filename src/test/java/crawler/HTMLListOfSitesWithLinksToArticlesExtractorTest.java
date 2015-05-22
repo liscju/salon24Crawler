@@ -1,12 +1,10 @@
 package crawler;
 
-import org.jsoup.Jsoup;
+import crawler.internal.HTMLListOfSitesWithLinksToArticlesExtractor;
 import org.jsoup.nodes.Document;
 import org.junit.Test;
 
 import java.util.List;
-
-import static org.junit.Assert.*;
 
 public class HTMLListOfSitesWithLinksToArticlesExtractorTest {
     @Test

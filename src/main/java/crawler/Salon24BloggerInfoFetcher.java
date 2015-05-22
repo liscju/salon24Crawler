@@ -2,6 +2,9 @@ package crawler;
 
 
 import crawler.api.ArticleContent;
+import crawler.internal.HTMLArticleContentExtractor;
+import crawler.internal.HTMLListOfArticlesExtractor;
+import crawler.internal.HTMLListOfSitesWithLinksToArticlesExtractor;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 

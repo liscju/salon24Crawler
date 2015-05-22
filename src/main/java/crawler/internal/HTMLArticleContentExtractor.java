@@ -1,4 +1,4 @@
-package crawler;
+package crawler.internal;
 
 import crawler.api.ArticleContent;
 import crawler.api.Comment;

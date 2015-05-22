@@ -1,16 +1,12 @@
 package crawler;
 
-import crawler.api.ArticleContent;
-import org.hamcrest.CoreMatchers;
-import org.hamcrest.Matcher;
+import crawler.internal.HTMLListOfArticlesExtractor;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.List;
-
-import static org.junit.Assert.*;
 
 @Ignore
 public class HTMLListOfArticlesExtractorTest {

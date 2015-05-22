@@ -1,6 +1,7 @@
 package crawler;
 
 import crawler.api.ArticleContent;
+import crawler.internal.HTMLArticleContentExtractor;
 import org.hamcrest.CoreMatchers;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
