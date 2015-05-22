@@ -47,15 +47,24 @@ public class HTMLArticleContentExtractor {
     //        c) 20.05 18.15         (year implicit - current)
     private Date extractDate(Elements articleCreated) {
         String dateText = articleCreated.text();
-        String[] dateHours = dateText.split(" ");
-        if (dateHours.length == 1) {
+        String[] dateTime = dateText.split(" ");
+        if (dateTime.length == 1) {
+            Integer hours = new Integer(dateTime[0].split(":")[0]);
+            Integer mins =  new Integer(dateTime[0].split(":")[1]);
+
             Integer day = Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
             Integer month = Calendar.getInstance().get(Calendar.MONTH);
             Integer year = Calendar.getInstance().get(Calendar.YEAR);
-            return new Date(year,month,day);
+            return new Date(year,month,day,hours,mins);
         }
-        String date = dateHours[0];
+        String date = dateTime[0];
         String[] dateParts = date.split("\\.");
+
+        String time = dateTime[1];
+        String[] timeParts = time.split(":");
+
+        Integer hours = new Integer(timeParts[0]);
+        Integer mins =  new Integer(timeParts[1]);
 
         Integer day = Integer.parseInt(dateParts[0]);
         Integer month = Integer.parseInt(dateParts[1])-1; // Month in date constructor starts with 0
