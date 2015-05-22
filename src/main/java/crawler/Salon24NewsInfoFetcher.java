@@ -1,7 +1,10 @@
 package crawler;
 
 
-import crawler.internal.*;
+import crawler.internal.HTMLBlogListOfSitesWithLinksToArticlesExtractor;
+import crawler.internal.HTMLListOfSitesWithLinksToArticlesExtractor;
+import crawler.internal.HTMLNewsListOfSitesWithLinksToArticlesExtractor;
+import crawler.internal.Salon24InfoFetcher;
 
 import java.util.Date;
 
@@ -10,21 +13,18 @@ import java.util.Date;
  * Example Input:
  * http://korwin-mikke.salon24.pl/ or http://dolinanicosci.salon24.pl/
  */
-public class Salon24BloggerInfoFetcher extends Salon24InfoFetcher {
-    private String url;
+public class Salon24NewsInfoFetcher extends Salon24InfoFetcher {
     private Date since;
     private HTMLListOfSitesWithLinksToArticlesExtractor documentsWithLinksToArticles;
 
-    public Salon24BloggerInfoFetcher(String url) {
-        this.url = url;
+    public Salon24NewsInfoFetcher() {
         this.since = new Date(Long.MIN_VALUE); // minimum date val,any other date will be after this :P
-        documentsWithLinksToArticles = new HTMLBlogListOfSitesWithLinksToArticlesExtractor(url);
+        documentsWithLinksToArticles = new HTMLNewsListOfSitesWithLinksToArticlesExtractor();
     }
 
-    public Salon24BloggerInfoFetcher(String url,Date since) {
-        this.url = url;
+    public Salon24NewsInfoFetcher(Date since) {
         this.since = since;
-        documentsWithLinksToArticles = new HTMLBlogListOfSitesWithLinksToArticlesExtractor(url);
+        documentsWithLinksToArticles = new HTMLNewsListOfSitesWithLinksToArticlesExtractor();
     }
 
     @Override

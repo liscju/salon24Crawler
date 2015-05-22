@@ -31,13 +31,16 @@ public class HTMLListOfArticlesExtractor {
         List<String> links = new LinkedList<String>();
         for (Element post : posts) {
             String link = extractLink(post);
-            links.add(link);
+            if (link != null)
+                links.add(link);
         }
         return links;
     }
 
     private String extractLink(Element post) {
         Element linkElement = post.select("h2 > a").first();
+        if (linkElement == null)
+            return null;
         String link = linkElement.attr("href");
         return link;
     }
