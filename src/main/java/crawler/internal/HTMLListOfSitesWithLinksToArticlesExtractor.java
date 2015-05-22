@@ -22,7 +22,7 @@ public abstract class HTMLListOfSitesWithLinksToArticlesExtractor {
 
     public Document extractSitesWithLinksToArticles(int i) throws IOException {
         String currentLink = calculateLink(i);
-        Document currentDocument = Jsoup.connect(currentLink).get();
+        Document currentDocument = SiteDownloader.getDocument(currentLink);
         if (hasLinksToArticle(currentDocument)) {
             return currentDocument;
         } else {
