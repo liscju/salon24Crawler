@@ -15,7 +15,7 @@ public class Salon24NewsInfoFetcherTest {
     @Test
     public void testGetDocumentsWithLinksToArticles() throws Exception {
         Salon24NewsInfoFetcher salon24NewsInfoFetcher =
-                new Salon24NewsInfoFetcher(new Date(2015,4,21,12,30) );
+                new Salon24NewsInfoFetcher(new Date(2015,1,1));
 
         List<ArticleContent> articleContents = salon24NewsInfoFetcher.fetchArticles();
         System.out.println(articleContents);
