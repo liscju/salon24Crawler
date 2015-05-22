@@ -42,19 +42,26 @@ public class HTMLArticleContentExtractor {
     }
 
     // assumes articleCreated date is format like in examples:
-    //        a) 2.11.2014 18.04     (year explicit)
-    //        b) 20.05 18.15         (year implicit - current)
+    //        a) 9.37                (today so day,month,year implicit)
+    //        b) 2.11.2014 18.04     (year explicit)
+    //        c) 20.05 18.15         (year implicit - current)
     private Date extractDate(Elements articleCreated) {
         String dateText = articleCreated.text();
         String[] dateHours = dateText.split(" ");
+        if (dateHours.length == 1) {
+            Integer day = Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
+            Integer month = Calendar.getInstance().get(Calendar.MONTH);
+            Integer year = Calendar.getInstance().get(Calendar.YEAR);
+            return new Date(year,month,day);
+        }
         String date = dateHours[0];
         String[] dateParts = date.split("\\.");
 
         Integer day = Integer.parseInt(dateParts[0]);
-        Integer month = Integer.parseInt(dateParts[1]);
+        Integer month = Integer.parseInt(dateParts[1])-1; // Month in date constructor starts with 0
         Integer year = dateParts.length == 3 ? Integer.parseInt(dateParts[2]) : Calendar.getInstance().get(Calendar.YEAR);
 
-        return new Date(year,month-1,day);
+        return new Date(year,month,day);
     }
 
     private Comment extractComment(Element articleComment) {
