@@ -9,6 +9,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -19,9 +20,16 @@ import java.util.List;
  */
 public class Salon24BloggerInfoFetcher {
     private String url;
+    private Date since;
 
     public Salon24BloggerInfoFetcher(String url) {
         this.url = url;
+        this.since = new Date(Long.MIN_VALUE); // minimum date val,any other date will be after this :P
+    }
+
+    public Salon24BloggerInfoFetcher(String url,Date since) {
+        this.url = url;
+        this.since = since;
     }
 
     public List<ArticleContent> fetchArticles() throws IOException {
@@ -35,7 +43,11 @@ public class Salon24BloggerInfoFetcher {
             for (String link : documentLinks) {
                 Document linkDocumentArticle = Jsoup.connect(link).get();
                 ArticleContent articleContent = new HTMLArticleContentExtractor(linkDocumentArticle).extractContent();
-                bloggerArticles.add(articleContent);
+                if (articleContent.getCreated().after(since)) {
+                    bloggerArticles.add(articleContent);
+                } else {
+                    return bloggerArticles; // ooops, im out
+                }
             }
         }
         return bloggerArticles;
