@@ -1,6 +1,7 @@
 package crawler.internal;
 
 import crawler.api.ArticleContent;
+import dao.NewsContentDAO;
 import org.jsoup.nodes.Document;
 
 import java.io.IOException;
@@ -10,11 +11,10 @@ import java.util.List;
 
 public abstract class Salon24InfoFetcher {
 
-    public List<ArticleContent> fetchArticles(){
-        List<ArticleContent> bloggerArticles = new LinkedList<ArticleContent>();
-
+    public void fetchArticles(){
         Document iteratingDocumentWithLinksToArticles;
         try {
+            NewsContentDAO newsContentDAO = NewsContentDAO.getInstance();
             while ( (iteratingDocumentWithLinksToArticles =
                         getDocumentsWithLinksToArticles().nextSiteWithLinksToArticles()) != null) {
 
@@ -32,9 +32,9 @@ public abstract class Salon24InfoFetcher {
                         Document linkDocumentArticle = SiteDownloader.getDocument(link);
                         ArticleContent articleContent = new HTMLArticleContentExtractor(linkDocumentArticle).extractContent();
                         if (articleContent.getCreated().after(getSince())) {
-                            bloggerArticles.add(articleContent);
+                            newsContentDAO.saveArticleContent(articleContent);
                         } else {
-                            return bloggerArticles; // ooops, im out
+                            return; // ooops, im out
                         }
                     } catch (IOException e) {
                         Logger.logException("Salon24InfoFetcher.fetchArticles exception while extracting article content", e);
@@ -44,7 +44,6 @@ public abstract class Salon24InfoFetcher {
         } catch (IOException e) {
             Logger.logException("Salon24InfoFetcher.fetchArticles cant get NextSiteWithLinksToArticles", e);
         }
-        return bloggerArticles;
     }
 
     protected abstract Date getSince();

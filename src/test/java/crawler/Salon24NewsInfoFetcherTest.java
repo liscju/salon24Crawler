@@ -17,8 +17,7 @@ public class Salon24NewsInfoFetcherTest {
         Salon24NewsInfoFetcher salon24NewsInfoFetcher =
                 new Salon24NewsInfoFetcher(new Date(2015,1,1));
 
-        List<ArticleContent> articleContents = salon24NewsInfoFetcher.fetchArticles();
-        System.out.println(articleContents);
+        salon24NewsInfoFetcher.fetchArticles();
     }
 
     @Test
