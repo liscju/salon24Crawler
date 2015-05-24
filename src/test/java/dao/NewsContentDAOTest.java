@@ -17,7 +17,7 @@ public class NewsContentDAOTest {
         NewsContentDAO newsContentDAO =
                 NewsContentDAO.getInstance();
         newsContentDAO.saveArticleContent(
-                new ArticleContent("Hejka",
+                new ArticleContent("","Hejka",
                         Calendar.getInstance().getTime(),
                         "Oto moj pierwszy koment",
                         Arrays.asList(

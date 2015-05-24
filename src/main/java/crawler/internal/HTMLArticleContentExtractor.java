@@ -20,8 +20,10 @@ import java.util.List;
  */
 public class HTMLArticleContentExtractor {
     private final Document document;
+    private final String link;
 
-    public HTMLArticleContentExtractor(Document document) {
+    public HTMLArticleContentExtractor(String link, Document document) {
+        this.link = link;
         this.document = document;
     }
 
@@ -38,7 +40,7 @@ public class HTMLArticleContentExtractor {
         for (Element articleComment : articleComments) {
             comments.add( extractComment(articleComment) );
         }
-        return new ArticleContent(title,created,content,comments);
+        return new ArticleContent(link,title,created,content,comments);
     }
 
     // assumes articleCreated date is format like in examples:

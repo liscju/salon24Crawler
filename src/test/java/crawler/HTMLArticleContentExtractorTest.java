@@ -17,7 +17,7 @@ public class HTMLArticleContentExtractorTest {
 
     private void downloadAndCheckExtractor(String url, String expectedTitle, String expectedArticlePreffix, String expectedArticleSuffix) throws IOException {
         Document document = Jsoup.connect(url).get();
-        HTMLArticleContentExtractor contentExtractor = new HTMLArticleContentExtractor(document);
+        HTMLArticleContentExtractor contentExtractor = new HTMLArticleContentExtractor(url, document);
         ArticleContent articleContent = contentExtractor.extractContent();
         assertEquals(expectedTitle, articleContent.getTitle());
         assertThat(articleContent.getMainContent(), CoreMatchers.startsWith(expectedArticlePreffix));
@@ -48,7 +48,7 @@ public class HTMLArticleContentExtractorTest {
     public void extractTestCase3() throws Exception {
         String url = "http://korwin-mikke.salon24.pl/613347,przychodze-tu-z-onetu";
         Document document = Jsoup.connect(url).get();
-        HTMLArticleContentExtractor contentExtractor = new HTMLArticleContentExtractor(document);
+        HTMLArticleContentExtractor contentExtractor = new HTMLArticleContentExtractor(url, document);
         ArticleContent articleContent = contentExtractor.extractContent();
     }
 

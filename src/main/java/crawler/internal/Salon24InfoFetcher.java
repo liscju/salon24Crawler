@@ -30,7 +30,7 @@ public abstract class Salon24InfoFetcher {
                 for (String link : documentLinks) {
                     try {
                         Document linkDocumentArticle = SiteDownloader.getDocument(link);
-                        ArticleContent articleContent = new HTMLArticleContentExtractor(linkDocumentArticle).extractContent();
+                        ArticleContent articleContent = new HTMLArticleContentExtractor(link,linkDocumentArticle).extractContent();
                         if (articleContent.getCreated().after(getSince())) {
                             newsContentDAO.saveArticleContent(articleContent);
                         } else {
