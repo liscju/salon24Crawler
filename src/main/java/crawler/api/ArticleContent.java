@@ -1,11 +1,35 @@
 package crawler.api;
 
+import com.fasterxml.jackson.core.JsonGenerator;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonSerializer;
+import com.fasterxml.jackson.databind.SerializerProvider;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
+import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+
+class JsonDateSerializer extends JsonSerializer<Date> {
+
+    private static final SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
+
+    @Override
+    public void serialize(Date date, JsonGenerator gen, SerializerProvider provider)
+            throws IOException, JsonProcessingException {
+
+        String formattedDate = dateFormat.format(date);
+
+        gen.writeString(formattedDate);
+    }
+
+}
 
 public class ArticleContent {
     private String link;
     private String title;
+    @JsonSerialize(using=JsonDateSerializer.class)
     private Date created;
     private String mainContent;
     private List<Comment> comments;
