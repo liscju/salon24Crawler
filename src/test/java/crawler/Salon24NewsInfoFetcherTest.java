@@ -3,6 +3,7 @@ package crawler;
 import crawler.api.ArticleContent;
 import crawler.internal.HTMLListOfSitesWithLinksToArticlesExtractor;
 import org.jsoup.Jsoup;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.Date;
@@ -20,6 +21,7 @@ public class Salon24NewsInfoFetcherTest {
         salon24NewsInfoFetcher.fetchArticles();
     }
 
+    @Ignore
     @Test
     public void testExample() throws Exception {
         Jsoup.connect("http://rogerus.dlaczego.salon24.pl/649659,duda-wygral").get();

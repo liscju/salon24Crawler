@@ -28,7 +28,13 @@ public class NewsContentDAO {
 
     public static synchronized NewsContentDAO getInstance() throws UnknownHostException {
         if (newsContentDAO == null) {
-            MongoClient mongoClient = new MongoClient(URL,PORT);
+            MongoClientOptions.Builder optionsBuilder = new MongoClientOptions.Builder();
+            optionsBuilder.connectionsPerHost(100);
+            optionsBuilder.maxWaitTime(2000);
+            optionsBuilder.socketKeepAlive(true);
+            optionsBuilder.threadsAllowedToBlockForConnectionMultiplier(50);
+            MongoClientOptions options = optionsBuilder.build();
+            MongoClient mongoClient = new MongoClient(URL+":"+PORT,options);
             DB db = mongoClient.getDB(DB);
             db.authenticate(USER,PASSWORD.toCharArray());
             newsContentDAO = new NewsContentDAO(db);
