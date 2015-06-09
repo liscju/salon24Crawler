@@ -12,7 +12,6 @@ import java.io.IOException;
 
 import static org.junit.Assert.*;
 
-@Ignore
 public class HTMLArticleContentExtractorTest {
 
     private void downloadAndCheckExtractor(String url, String expectedTitle, String expectedArticlePreffix, String expectedArticleSuffix) throws IOException {
@@ -51,5 +50,24 @@ public class HTMLArticleContentExtractorTest {
         HTMLArticleContentExtractor contentExtractor = new HTMLArticleContentExtractor(url, document);
         ArticleContent articleContent = contentExtractor.extractContent();
     }
+    
+    @Test
+    public void extract() throws Exception {
+        String url = "http://korwin-mikke.salon24.pl/652993,coz-pamietam-los-po";
+        Document document = Jsoup.connect(url).get();
+        HTMLArticleContentExtractor contentExtractor = new HTMLArticleContentExtractor(url, document);
+        ArticleContent articleContent = contentExtractor.extractContent();
+        System.out.println(articleContent);
+    }
 
 }
+
+
+
+
+
+
+
+
+
+

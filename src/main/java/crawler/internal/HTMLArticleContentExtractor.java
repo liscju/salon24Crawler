@@ -31,7 +31,7 @@ public class HTMLArticleContentExtractor {
         Elements articleHeader = document.select("article.post > header").select("h1");
         String title = articleHeader.text();
         Elements articleCreated = document.select("article.post > header > span.created");
-        Date created = extractDate(articleCreated);
+        Date created = extractArticleCreatedDate(articleCreated);
         Elements articleBody = document.select("article.post > div.article-body");
         String content = articleBody.text();
 
@@ -47,8 +47,13 @@ public class HTMLArticleContentExtractor {
     //        a) 9.37                (today so day,month,year implicit)
     //        b) 2.11.2014 18.04     (year explicit)
     //        c) 20.05 18.15         (year implicit - current)
-    private Date extractDate(Elements articleCreated) {
+    private Date extractArticleCreatedDate(Elements articleCreated) {
         String dateText = articleCreated.text();
+        return extractDate(dateText);
+    }
+
+    // Extract date from string in specific salon24.pl date format
+    private Date extractDate(String dateText) {
         String[] dateTime = dateText.split(" ");
         if (dateTime.length == 1) {
             Integer hours = new Integer(dateTime[0].split(":")[0]);
@@ -78,10 +83,37 @@ public class HTMLArticleContentExtractor {
     private Comment extractComment(Element articleComment) {
         Elements articleCommentTitle = articleComment.select("h3");
         Elements articleCommentBody = articleComment.select("div.comment-body");
+        Elements articleAuthorBox = articleComment.select("div.author-box");
 
         String commentTitle = articleCommentTitle.text();
         String commentBody = articleCommentBody.text();
-        return new Comment(commentTitle,commentBody);
+        Date commentDate = extractCommentDate(articleAuthorBox);
+        return new Comment(commentTitle,commentBody,commentDate);
+    }
+
+    private Date extractCommentDate(Elements articleAuthorBox) {
+        Elements authorAboutBody = articleAuthorBox.select(".author-about-body");
+        Element authorCommentDate = authorAboutBody.select("span.sep").first();
+        Date commentDate = extractDate(authorCommentDate.text());
+        return commentDate;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
