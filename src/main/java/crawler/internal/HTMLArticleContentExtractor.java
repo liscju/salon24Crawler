@@ -88,7 +88,15 @@ public class HTMLArticleContentExtractor {
         String commentTitle = articleCommentTitle.text();
         String commentBody = articleCommentBody.text();
         Date commentDate = extractCommentDate(articleAuthorBox);
-        return new Comment(commentTitle,commentBody,commentDate);
+        String commentAuthor = extractCommentAuthor(articleAuthorBox);
+        return new Comment(commentAuthor,commentTitle,commentBody,commentDate);
+    }
+
+    private String extractCommentAuthor(Elements articleAuthorBox) {
+        Elements authorAboutBody = articleAuthorBox.select(".author-about-body");
+        Element authorOfComment = authorAboutBody.select("a.author-nick")
+                .first();
+        return authorOfComment.text();
     }
 
     private Date extractCommentDate(Elements articleAuthorBox) {
