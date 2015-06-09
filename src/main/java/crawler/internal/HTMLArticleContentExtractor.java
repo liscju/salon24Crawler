@@ -10,6 +10,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Extract content of article from site given in document
@@ -89,7 +91,16 @@ public class HTMLArticleContentExtractor {
         String commentBody = articleCommentBody.text();
         Date commentDate = extractCommentDate(articleAuthorBox);
         String commentAuthor = extractCommentAuthor(articleAuthorBox);
-        return new Comment(commentAuthor,commentTitle,commentBody,commentDate);
+        String commentReceiver = extractReceiverOfComment(commentTitle);
+        return new Comment(commentAuthor,commentTitle,commentReceiver,commentBody,commentDate);
+    }
+
+    private String extractReceiverOfComment(String commentTitle) {
+        Pattern pattern = Pattern.compile("@\\w+");
+        Matcher matcher = pattern.matcher(commentTitle);
+        if (matcher.find() )
+            return matcher.group().substring(1);
+        return "";
     }
 
     private String extractCommentAuthor(Elements articleAuthorBox) {
