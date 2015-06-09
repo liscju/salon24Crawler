@@ -30,7 +30,7 @@ public class HTMLArticleContentExtractor {
     }
 
     public ArticleContent extractContent() {
-        String author = extractArticleAuthor(document);
+        String author = extractArticleAuthor(document).toLowerCase();
         Elements articleHeader = document.select("article.post > header").select("h1");
         String title = articleHeader.text();
         Elements articleCreated = document.select("article.post > header > span.created");
@@ -52,7 +52,7 @@ public class HTMLArticleContentExtractor {
     }
 
     private Comment changeAuthorReceiverCommentToRealNick(String articleAuthor, Comment comment) {
-        if (comment.getReceiver().equals("Autor")) {
+        if (comment.getReceiver().equals("autor")) {
             return new Comment(
                     comment.getAuthor(),
                     comment.getTitle(),
@@ -113,8 +113,8 @@ public class HTMLArticleContentExtractor {
         String commentTitle = articleCommentTitle.text();
         String commentBody = articleCommentBody.text();
         Date commentDate = extractCommentDate(articleAuthorBox);
-        String commentAuthor = extractCommentAuthor(articleAuthorBox);
-        String commentReceiver = extractReceiverOfComment(commentTitle);
+        String commentAuthor = extractCommentAuthor(articleAuthorBox).toLowerCase();
+        String commentReceiver = extractReceiverOfComment(commentTitle).toLowerCase();
         return new Comment(commentAuthor,commentTitle,commentReceiver,commentBody,commentDate);
     }
 
