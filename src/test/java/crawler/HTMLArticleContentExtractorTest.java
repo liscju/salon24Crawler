@@ -53,7 +53,7 @@ public class HTMLArticleContentExtractorTest {
     
     @Test
     public void extract() throws Exception {
-        String url = "http://almanzor.salon24.pl/650693,o-narodzie-sprawcow-b-komorowskiego-jeszcze-slow-kilka";
+        String url = "http://korwin-mikke.salon24.pl/652993,coz-pamietam-los-po";
         Document document = Jsoup.connect(url).get();
         HTMLArticleContentExtractor contentExtractor = new HTMLArticleContentExtractor(url, document);
         ArticleContent articleContent = contentExtractor.extractContent();

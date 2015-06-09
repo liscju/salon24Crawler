@@ -52,7 +52,7 @@ public class HTMLArticleContentExtractor {
     }
 
     private Comment changeAuthorReceiverCommentToRealNick(String articleAuthor, Comment comment) {
-        if (comment.getReceiver().equals("Author")) {
+        if (comment.getReceiver().equals("Autor")) {
             return new Comment(
                     comment.getAuthor(),
                     comment.getTitle(),
