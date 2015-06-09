@@ -41,9 +41,26 @@ public class HTMLArticleContentExtractor {
         List<Comment> comments = new LinkedList<Comment>();
         Elements articleComments = document.select("section#komentarze > ul.comments-list > li");
         for (Element articleComment : articleComments) {
-            comments.add( extractComment(articleComment) );
+            comments.add(
+                    changeAuthorReceiverCommentToRealNick(
+                            author,
+                            extractComment(articleComment)
+                    )
+            );
         }
         return new ArticleContent(link,title,author,created,content,comments);
+    }
+
+    private Comment changeAuthorReceiverCommentToRealNick(String articleAuthor, Comment comment) {
+        if (comment.getReceiver().equals("Author")) {
+            return new Comment(
+                    comment.getAuthor(),
+                    comment.getTitle(),
+                    articleAuthor,
+                    comment.getContent(),
+                    comment.getDate()
+            );
+        } else return comment;
     }
 
     private String extractArticleAuthor(Document document) {
