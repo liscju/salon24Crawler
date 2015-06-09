@@ -30,6 +30,7 @@ public class HTMLArticleContentExtractor {
     }
 
     public ArticleContent extractContent() {
+        String author = extractArticleAuthor(document);
         Elements articleHeader = document.select("article.post > header").select("h1");
         String title = articleHeader.text();
         Elements articleCreated = document.select("article.post > header > span.created");
@@ -42,7 +43,12 @@ public class HTMLArticleContentExtractor {
         for (Element articleComment : articleComments) {
             comments.add( extractComment(articleComment) );
         }
-        return new ArticleContent(link,title,created,content,comments);
+        return new ArticleContent(link,title,author,created,content,comments);
+    }
+
+    private String extractArticleAuthor(Document document) {
+        Elements authorElement = document.select("div#blog-header div#blog-header-user div.author-box div.author-about-body a.author-nick");
+        return authorElement.text();
     }
 
     // assumes articleCreated date is format like in examples:
