@@ -5,6 +5,8 @@ import dao.NewsContentDAO;
 import org.jsoup.nodes.Document;
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -32,7 +34,10 @@ public abstract class Salon24InfoFetcher {
                         Document linkDocumentArticle = SiteDownloader.getDocument(link);
                         ArticleContent articleContent = new HTMLArticleContentExtractor(link, linkDocumentArticle).extractContent();
                         if (articleContent.getCreated().after(getSince())) {
-                            newsContentDAO.saveArticleContent(articleContent);
+                            if (articleContent.getCreated().before(getBefore()) ) {
+                                newsContentDAO.saveArticleContent(articleContent);
+                                printSavedArticle(articleContent);
+                            }
                         } else {
                             return; // ooops, im out
                         }
@@ -48,7 +53,14 @@ public abstract class Salon24InfoFetcher {
         }
     }
 
+    private final DateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
+    private void printSavedArticle(ArticleContent articleContent) {
+        System.out.println("Saved Article with Date:" + df.format(articleContent.getCreated() ) );
+    }
+
     protected abstract Date getSince();
 
     protected abstract HTMLListOfSitesWithLinksToArticlesExtractor getDocumentsWithLinksToArticles();
+
+    protected abstract Date getBefore();
 }

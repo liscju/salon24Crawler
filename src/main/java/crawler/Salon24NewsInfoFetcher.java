@@ -6,6 +6,7 @@ import crawler.internal.HTMLListOfSitesWithLinksToArticlesExtractor;
 import crawler.internal.HTMLNewsListOfSitesWithLinksToArticlesExtractor;
 import crawler.internal.Salon24InfoFetcher;
 
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -15,15 +16,18 @@ import java.util.Date;
  */
 public class Salon24NewsInfoFetcher extends Salon24InfoFetcher {
     private Date since;
+    private Date before;
     private HTMLListOfSitesWithLinksToArticlesExtractor documentsWithLinksToArticles;
 
     public Salon24NewsInfoFetcher() {
         this.since = new Date(Long.MIN_VALUE); // minimum date val,any other date will be after this :P
+        this.before = new Date();
         documentsWithLinksToArticles = new HTMLNewsListOfSitesWithLinksToArticlesExtractor();
     }
 
-    public Salon24NewsInfoFetcher(Date since) {
+    public Salon24NewsInfoFetcher(Date since,Date before) {
         this.since = since;
+        this.before = before;
         documentsWithLinksToArticles = new HTMLNewsListOfSitesWithLinksToArticlesExtractor();
     }
 
@@ -35,6 +39,11 @@ public class Salon24NewsInfoFetcher extends Salon24InfoFetcher {
     @Override
     protected HTMLListOfSitesWithLinksToArticlesExtractor getDocumentsWithLinksToArticles() {
         return documentsWithLinksToArticles;
+    }
+
+    @Override
+    protected Date getBefore() {
+        return before;
     }
 }
 
