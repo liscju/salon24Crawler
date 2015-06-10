@@ -30,7 +30,7 @@ public abstract class Salon24InfoFetcher {
                 for (String link : documentLinks) {
                     try {
                         Document linkDocumentArticle = SiteDownloader.getDocument(link);
-                        ArticleContent articleContent = new HTMLArticleContentExtractor(link,linkDocumentArticle).extractContent();
+                        ArticleContent articleContent = new HTMLArticleContentExtractor(link, linkDocumentArticle).extractContent();
                         if (articleContent.getCreated().after(getSince())) {
                             newsContentDAO.saveArticleContent(articleContent);
                         } else {
@@ -38,6 +38,8 @@ public abstract class Salon24InfoFetcher {
                         }
                     } catch (IOException e) {
                         Logger.logException("Salon24InfoFetcher.fetchArticles exception while extracting article content", e);
+                    } catch (NullPointerException e) {
+                        Logger.logException("Salon24InfoFetcher.fetchArticles nullpointerexception while extracting article content", e);
                     }
                 }
             }
