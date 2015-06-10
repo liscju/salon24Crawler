@@ -17,7 +17,7 @@ public class Salon24NewsInfoFetcherTest {
     public void testGetDocumentsWithLinksToArticles() throws Exception {
         Salon24NewsInfoFetcher salon24NewsInfoFetcher =
                 new Salon24NewsInfoFetcher(new Date(2015-1900,0,1),
-                                           new Date(2015-1900,1,24));
+                                           new Date(2015-1900,1,22));
 
         salon24NewsInfoFetcher.fetchArticles();
     }

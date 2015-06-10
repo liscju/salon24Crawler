@@ -44,7 +44,14 @@ public class NewsContentDAO {
     }
 
     public void saveArticleContent(ArticleContent articleContent) {
-        newsCollection.insert(articleContent);
+        for (int i=0;i<5;i++) {
+            try {
+                newsCollection.insert(articleContent);
+                return;
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
 
 
