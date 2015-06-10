@@ -1,4 +1,4 @@
-package crawler.internal;
+package pl.edu.agh.agents.crawler.internal;
 
 /**
  * Extract information which sites of given blog contains

@@ -1,15 +1,10 @@
-package crawler;
+package pl.edu.agh.agents.crawler;
 
-import crawler.api.ArticleContent;
-import crawler.internal.HTMLListOfSitesWithLinksToArticlesExtractor;
 import org.jsoup.Jsoup;
 import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.Date;
-import java.util.List;
-
-import static org.junit.Assert.*;
 
 public class Salon24NewsInfoFetcherTest {
 

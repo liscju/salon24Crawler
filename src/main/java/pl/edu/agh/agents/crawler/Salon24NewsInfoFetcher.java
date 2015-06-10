@@ -1,12 +1,10 @@
-package crawler;
+package pl.edu.agh.agents.crawler;
 
 
-import crawler.internal.HTMLBlogListOfSitesWithLinksToArticlesExtractor;
-import crawler.internal.HTMLListOfSitesWithLinksToArticlesExtractor;
-import crawler.internal.HTMLNewsListOfSitesWithLinksToArticlesExtractor;
-import crawler.internal.Salon24InfoFetcher;
+import pl.edu.agh.agents.crawler.internal.HTMLListOfSitesWithLinksToArticlesExtractor;
+import pl.edu.agh.agents.crawler.internal.HTMLNewsListOfSitesWithLinksToArticlesExtractor;
+import pl.edu.agh.agents.crawler.internal.Salon24InfoFetcher;
 
-import java.util.Calendar;
 import java.util.Date;
 
 /**

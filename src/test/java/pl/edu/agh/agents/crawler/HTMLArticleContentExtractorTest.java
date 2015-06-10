@@ -1,11 +1,10 @@
-package crawler;
+package pl.edu.agh.agents.crawler;
 
-import crawler.api.ArticleContent;
-import crawler.internal.HTMLArticleContentExtractor;
+import pl.edu.agh.agents.crawler.api.ArticleContent;
+import pl.edu.agh.agents.crawler.internal.HTMLArticleContentExtractor;
 import org.hamcrest.CoreMatchers;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.IOException;

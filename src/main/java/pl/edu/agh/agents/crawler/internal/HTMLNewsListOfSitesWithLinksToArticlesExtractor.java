@@ -1,4 +1,4 @@
-package crawler.internal;
+package pl.edu.agh.agents.crawler.internal;
 
 public class HTMLNewsListOfSitesWithLinksToArticlesExtractor extends HTMLListOfSitesWithLinksToArticlesExtractor{
 

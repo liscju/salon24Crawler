@@ -1,7 +1,7 @@
-package crawler.internal;
+package pl.edu.agh.agents.crawler.internal;
 
-import crawler.api.ArticleContent;
-import dao.NewsContentDAO;
+import pl.edu.agh.agents.crawler.api.ArticleContent;
+import pl.edu.agh.agents.dao.NewsContentDAO;
 import org.jsoup.nodes.Document;
 
 import java.io.IOException;

@@ -1,6 +1,6 @@
-package crawler;
+package pl.edu.agh.agents.crawler;
 
-import crawler.internal.HTMLListOfArticlesExtractor;
+import pl.edu.agh.agents.crawler.internal.HTMLListOfArticlesExtractor;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.junit.Ignore;

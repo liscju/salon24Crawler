@@ -1,4 +1,4 @@
-package crawler.internal;
+package pl.edu.agh.agents.crawler.internal;
 
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;

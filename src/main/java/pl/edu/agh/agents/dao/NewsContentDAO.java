@@ -1,7 +1,7 @@
-package dao;
+package pl.edu.agh.agents.dao;
 
 import com.mongodb.*;
-import crawler.api.ArticleContent;
+import pl.edu.agh.agents.crawler.api.ArticleContent;
 import org.jongo.Jongo;
 import org.jongo.MongoCollection;
 

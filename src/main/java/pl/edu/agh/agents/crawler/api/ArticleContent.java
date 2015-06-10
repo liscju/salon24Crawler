@@ -1,4 +1,4 @@
-package crawler.api;
+package pl.edu.agh.agents.crawler.api;
 
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.JsonProcessingException;

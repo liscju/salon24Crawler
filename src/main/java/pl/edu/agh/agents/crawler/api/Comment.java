@@ -1,4 +1,4 @@
-package crawler.api;
+package pl.edu.agh.agents.crawler.api;
 
 import java.util.Date;
 

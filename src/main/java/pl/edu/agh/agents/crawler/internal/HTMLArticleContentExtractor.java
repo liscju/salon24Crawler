@@ -1,7 +1,7 @@
-package crawler.internal;
+package pl.edu.agh.agents.crawler.internal;
 
-import crawler.api.ArticleContent;
-import crawler.api.Comment;
+import pl.edu.agh.agents.crawler.api.ArticleContent;
+import pl.edu.agh.agents.crawler.api.Comment;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;

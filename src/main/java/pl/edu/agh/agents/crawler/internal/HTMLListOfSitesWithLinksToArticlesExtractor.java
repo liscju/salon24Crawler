@@ -1,6 +1,5 @@
-package crawler.internal;
+package pl.edu.agh.agents.crawler.internal;
 
-import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
 import java.io.IOException;
